@@ -1,0 +1,14 @@
+{{ $menu := .Get "menu" }}
+
+{{ if $menu }}
+  {{ $menu = print $menu "/" }}
+  <ul>
+    {{ range where .Site.RegularPages "File.Dir" $menu }}
+      <li>
+        <a href="{{ .Permalink }}">
+          {{ .Title }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

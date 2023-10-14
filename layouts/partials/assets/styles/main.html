@@ -1,0 +1,10 @@
+{{ $options := dict "inlineImports" true }}
+
+{{ $main := resources.Get "styles/main.css" }}
+{{ $main = $main | resources.PostCSS $options }}
+
+<!-- {{ if hugo.IsProduction }}
+  {{ $main = $main | minify | fingerprint | resources.PostProcess }}
+{{ end }} -->
+
+<link href="{{ $main.Permalink }}" rel="stylesheet" />

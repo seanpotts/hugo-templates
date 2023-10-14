@@ -1,0 +1,7 @@
+{{ $clipboard := resources.Get "scripts/vendor/clipboard.min.js" }}
+
+{{ if hugo.IsProduction }}
+  {{ $clipboard = $clipboard | minify | fingerprint }}
+{{ end }}
+
+<script src="{{ $clipboard.Permalink }}" type="text/javascript"></script>
