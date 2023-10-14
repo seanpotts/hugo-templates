@@ -1,0 +1,39 @@
+<!--
+  - "headingLevel" variable gets set based on number. If set to 0 it will
+  not show the heading.
+  - File name and "title" field of json files need to match for data range
+  to work properly.
+  - "accordionMobile" will show the accordion on mobile but not desktop.
+  - "persistAccordion" will show the accordion across all views.
+-->
+
+{{ $headingLevel := .Get "headingLevel" }}
+{{ $accordionMobile := .Get "accordionMobile" }}
+{{ $accordionPersist := .Get "accordionPersist" }}
+{{ $path := .Get "path" }}
+
+{{ $path := split $path "/" }}
+
+{{ $directory := slice }}
+{{ $file := "" }}
+{{ range $index, $element := $path }}
+  <!-- Pop file (last part of string/array) from path -->
+  {{ if ne (add $index 1) (len $path) }}
+    {{ $directory = $directory | append $element }}
+  {{ end }}
+
+  <!-- Get file (last part of string/array) -->
+  {{ if eq (add $index 1) (len $path) }}
+    {{ $file = $element }}
+  {{ end }}
+{{ end }}
+
+{{ $data := ""}}
+{{ range index $.Site.Data $directory }}
+  {{ $title := lower .title | plainify | anchorize }}
+  {{ if eq $title $file }}
+    {{ $data = . }}
+  {{ end }}
+{{ end }}
+
+{{ partial "content/table-data" (dict "data" $data "headingLevel" $headingLevel "accordionMobile" $accordionMobile "accordionPersist" $accordionPersist) . }}

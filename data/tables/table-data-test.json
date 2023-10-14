@@ -1,0 +1,47 @@
+{
+  "title": "Table data test",
+  "titleDisplay": "Table data test custom display title",
+  "description": "Posuere ac ut consequat semper viverra eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar.",
+  "extra": "Sodales ut etiam sit amet nisl purus in mollis nunc. Enim diam vulputate ut pharetra sit amet aliquam. Diam donec adipiscing tristique risus nec feugiat in.\n\nEnim tortor at auctor urna nunc id. Vel facilisis volutpat est velit.",
+  "caption": "Table for the table data test content.",
+  "heading": [
+    {
+      "title": "Lorem ipsum"
+    },
+    {
+      "title": "Dolor sit amet"
+    }
+  ],
+  "data": [
+    {
+      "row": [
+        {
+          "text": "Netus et malesuada fames ac turpis egestas integer."
+        },
+        {
+          "text": "Sapien faucibus et molestie ac feugiat. Arcu non sodales neque sodales ut etiam sit amet."
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "text": "Cras adipiscing enim."
+        },
+        {
+          "text": "Facilisis sed odio morbi quis commodo odio aenean.\n\nEnim ut sem viverra aliquet eget sit."
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "text": "Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut. Mi ipsum faucibus vitae aliquet. Turpis egestas sed tempus urna et pharetra. Viverra suspendisse potenti nullam ac tortor."
+        },
+        {
+          "text": "Velit scelerisque in dictum non consectetur a."
+        }
+      ]
+    }
+  ]
+}

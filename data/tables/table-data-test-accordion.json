@@ -1,0 +1,47 @@
+{
+  "title": "Table data test accordion",
+  "titleDisplay": "",
+  "description": "",
+  "extra": "",
+  "caption": "Table for the table data test accordion content.",
+  "heading": [
+    {
+      "title": "Lorem"
+    },
+    {
+      "title": "Ipsum"
+    }
+  ],
+  "data": [
+    {
+      "row": [
+        {
+          "text": "Arcu ac tortor."
+        },
+        {
+          "text": "Habitant morbi."
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "text": "Dolor sit amet."
+        },
+        {
+          "text": "Tellus in hac habitasse."
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "text": "Viverra suspendisse potenti."
+        },
+        {
+          "text": "Vitae elementum curabitur vitae."
+        }
+      ]
+    }
+  ]
+}

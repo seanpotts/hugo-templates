@@ -1,0 +1,34 @@
+<!--
+  A <span> must exist around the title, either for full encapsulation
+  or partial words, for the sidebar's table-of-contents component to
+  drill down and findRE/replaceRE findings consistently. This would
+  be especially necessary if passing something like a "lang" attribute,
+  for example.
+-->
+
+{{ $level := .Get "level" }}
+{{ $text := .Get "text" | markdownify }}
+{{ $lang := .Get "lang" }}
+
+{{ $id := $text | plainify | lower }}
+{{ $id = $id | replaceRE "&" "and" }}
+{{ $id = $id | anchorize }}
+{{ $id = $id | replaceRE " " "-" | replaceRE "---" "-" | replaceRE "--" "-" | replaceRE "-+" "-" | replaceRE "," "-" }}
+
+<!-- Catch any options for true or defaults -->
+{{ $languageCode := "fi" }}
+{{ if ne $lang "true" }}
+  {{ $languageCode = $lang }}
+{{ end }}
+
+<h{{ $level }}>
+  <a
+    id="{{ $id }}"
+    href="#{{ $id }}"
+    class="inline-flex transition-colors duration-100 ease-linear focus:outline-none focus:ring hover:text-indigo-600 focus:text-indigo-600 group decoration-2"
+  >
+    <span class="transition duration-100 ease-linear group-focus:ring">
+      <span {{ if $languageCode }}lang="{{ $languageCode }}"{{ end }}>{{ $text }}</span>
+    </span>
+  </a>
+</h{{ $level }}>

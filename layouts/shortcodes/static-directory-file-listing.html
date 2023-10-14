@@ -1,0 +1,24 @@
+{{ $baseURL := .Site.BaseURL }}
+{{ $hideExtensions := .Get "hideExtensions" }}
+{{ $target := .Get "target" }}
+
+{{ $directory := .Get "directory" }}
+{{ $path := print "/static/" ($.Get "directory") }}
+
+{{ $files := readDir $path }}
+{{ if $files }}
+  <ul>
+    {{ range $files }}
+      <li>
+        {{ $title := .Name }}
+        {{ if $hideExtensions }}
+          {{ $title = replaceRE `(.*)\.[^.]+$` "$1" $title  }}
+        {{ end }}
+
+        <a href="{{ $baseURL }}{{ $directory }}/{{ .Name }}" {{ if $target }}target="_blank"{{ end }}>
+          <span>{{ $title }}</span>{{ if $target }}<span class="pl-2 pr-0.5">{{ partial "icons/external" . }}</span><span class="sr-only">(Opens in new window)</span>{{ end }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

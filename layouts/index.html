@@ -1,0 +1,11 @@
+{{ partial "site-header.html" . }}
+
+  <div class="prose">
+    <h1>
+      {{- .Title -}}
+    </h1>
+
+    {{ .Content }}
+  </div>
+
+{{ partial "site-footer.html" . }}

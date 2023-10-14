@@ -1,0 +1,7 @@
+{{ $appNavigationMobile := resources.Get "scripts/app-navigation-mobile.js" }}
+
+<!-- {{ if hugo.IsProduction }}
+  {{ $appNavigationMobile = $appNavigationMobile | minify | fingerprint }}
+{{ end }} -->
+
+<script src="{{ $appNavigationMobile.Permalink }}" type="text/javascript"></script>

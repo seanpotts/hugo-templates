@@ -1,0 +1,9 @@
+{{ $faviconAppleTouch := resources.GetMatch "images/favicons/apple-touch-icon.png" }}
+{{ $favicon32x32 := resources.GetMatch "images/favicons/favicon-32x32.png" }}
+{{ $favicon16x16 := resources.GetMatch "images/favicons/favicon-16x16.png" }}
+{{ $faviconManifest := resources.GetMatch "images/favicons/site.webmanifest" }}
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ $faviconAppleTouch.RelPermalink }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ $favicon32x32.RelPermalink }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ $favicon16x16.RelPermalink }}">
+<link rel="manifest" href="{{ $faviconManifest.RelPermalink }}">

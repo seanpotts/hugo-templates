@@ -1,0 +1,7 @@
+{{ $accordion := resources.Get "scripts/accordion.js" }}
+
+<!-- {{ if hugo.IsProduction }}
+  {{ $accordion = $accordion | minify | fingerprint }}
+{{ end }} -->
+
+<script src="{{ $accordion.Permalink }}" type="text/javascript"></script>

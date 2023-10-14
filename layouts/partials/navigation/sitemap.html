@@ -1,0 +1,24 @@
+{{ range .menu }}
+  {{ if .HasChildren }}
+    <ul>
+      {{ range .Children }}
+        <li>
+          <a href="{{ .URL }}">
+            {{ .Title }}
+          </a>
+          {{ if .HasChildren }}
+            <ul>
+            {{ range .Children }}
+              <li>
+                <a href="{{ .URL }}">
+                  {{ .Title }}
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}

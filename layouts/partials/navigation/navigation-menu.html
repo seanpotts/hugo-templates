@@ -1,0 +1,36 @@
+{{ $site := .site }}
+{{ $menu := .menu }}
+{{ $title := .title }}
+
+{{ range (index .site.Menus $menu) }}
+  <div {{ if .Children }}class="pt-4"{{ end }}>
+    <a
+      href="{{ .URL }}"
+      class="inline-flex transition-colors duration-100 md:hover:text-indigo-600 md:focus:text-indigo-600 focus:outline-none group underline-trigger"
+    >
+      <span class="px-2 py-1 font-bold transition duration-100 ease-linear group-focus:ring underline-target">
+        {{ $title }}
+      </span>
+    </a>
+  </div>
+  {{ if .Children }}
+    <div>
+      <nav>
+        <ul class="flex flex-col">
+          {{ range .Children }}
+            <li>
+              <a
+                href="{{ .URL }}"
+                class="inline-flex transition-colors duration-100 md:hover:text-indigo-600 md:focus:text-indigo-600 focus:outline-none group underline-trigger"
+              >
+                <span class="px-2 py-1 transition duration-100 ease-linear group-focus:ring underline-target">
+                  {{ .Title }}
+                </span>
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </nav>
+    </div>
+  {{ end }}
+{{ end }}
