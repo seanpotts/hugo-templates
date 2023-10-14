@@ -1,0 +1,34 @@
+<div class="hidden md:block">
+  <nav aria-label="Breadcrumb navigation">
+    <ul class="flex flex-wrap items-center p-0 -ml-2 list-none">
+      {{ range .Ancestors.Reverse }}
+        <li>
+          <a
+            class="px-2 py-1 transition duration-100 ease-linear focus:outline-none focus:ring focus:ring-inset underline-trigger"
+            href="{{ .RelPermalink }}"
+          >
+            <span class="underline-target">
+              {{ .Title }}
+            </span>
+          </a>
+        </li>
+        <li
+          class="inline-flex items-center"
+          aria-hidden="true"
+        >
+          {{ partial "icons/chevron" (dict "color" "text-gray-400") . }}
+        </li>
+      {{ end }}
+      <li>
+        <a
+          class="px-2 py-1 transition duration-100 ease-linear focus:outline-none focus:ring focus:ring-inset underline-trigger"
+          href="{{ .RelPermalink }}"
+        >
+          <span class="underline-target">
+            {{ .Title }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

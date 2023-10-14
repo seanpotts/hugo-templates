@@ -1,0 +1,14 @@
+{{ $linkText := .Get "text" }}
+{{ $linkUrl := .Get "url" }}
+{{ $external := .Get "external" }}
+{{ $lang := .Get "lang" }}
+
+<!-- Catch any options for true or defaults -->
+{{ $languageCode := "fi" }}
+{{ if or (ne $lang 1) (ne $lang true) (ne $lang "true") (ne $lang "fi") }}
+  {{ $languageCode = $lang }}
+{{ end }}
+
+<a href="{{ $linkUrl }}" {{ if $external }}target="_blank"{{ end }}>
+  {{- if $external -}}<span {{ if $languageCode }}lang="{{ $languageCode }}"{{ end }}>{{- end -}}{{ $linkText }}{{- if $external -}}</span><span class="pl-2 pr-0.5">{{ partial "icons/external" . }}</span><span class="sr-only">(Opens in new window)</span>{{- end -}}
+</a>

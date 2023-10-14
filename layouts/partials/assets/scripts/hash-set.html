@@ -1,0 +1,7 @@
+{{ $hashSet := resources.Get "scripts/hash-set.js" }}
+
+<!-- {{ if hugo.IsProduction }}
+  {{ $hashSet = $hashSet | minify | fingerprint }}
+{{ end }} -->
+
+<script src="{{ $hashSet.Permalink }}" type="text/javascript"></script>

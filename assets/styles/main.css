@@ -1,0 +1,51 @@
+/* Tailwind */
+/* ---------------------------------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Underline */
+/* ---------------------------------------------------------------- */
+.underline-target {
+  @apply underline;
+  @apply duration-200;
+  text-decoration-color: transparent;
+}
+.underline-trigger:hover .underline-target,
+.underline-trigger:focus .underline-target,
+li[data-navigation-state="active"] > .underline-trigger .underline-target,
+li[data-navigation-state="active"] > div > .underline-trigger .underline-target,
+.underline-target-active {
+  text-decoration-color: currentColor;
+}
+
+
+/* Pre and code */
+/* ---------------------------------------------------------------- */
+pre {
+  white-space: break-spaces;
+}
+
+
+/* Open states */
+/* ---------------------------------------------------------------- */
+body[data-navigation-state="active"] main,
+body[data-navigation-state="active"] .table-of-contents {
+  @apply hidden;
+}
+
+body[data-navigation-state="active"] .js-navigationMobileTarget {
+  @apply opacity-100;
+}
+
+body[data-navigation-state="active"] .js-navigationMobileTarget > div {
+  @apply block;
+}
+
+body[data-navigation-state="active"] .mobile-menu-text-open {
+  @apply hidden;
+}
+body[data-navigation-state="active"] .mobile-menu-text-close {
+  @apply block;
+}

@@ -1,0 +1,41 @@
+title = 'Hugo Templates'
+baseURL = '/'
+languageCode = 'en'
+
+disableKinds = ['taxonomyTerm']
+disableHugoGeneratorInject = true
+
+pluralizeListTitles = false
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min      = "0.118.0"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "hugo_stats.json"
+    target = "assets/watching/hugo_stats.json"
+
+[build]
+  [build.buildStats]
+    enable = true
+[[build.cachebusters]]
+    source = 'assets/watching/hugo_stats\.json'
+    target = 'main\.css'
+[[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+[[build.cachebusters]]
+    source = 'assets/.*\.(js|ts|jsx|tsx)'
+    target = 'js'
+[[build.cachebusters]]
+    source = 'assets/.*\.(.*)$'
+    target = '$1'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Allows HTML in markdown
+      unsafe = true

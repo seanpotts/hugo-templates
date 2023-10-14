@@ -1,0 +1,18 @@
+{{ $menu := .Get "menu" }}
+
+{{ if $menu }}
+  {{ $menu = print $menu "/" }}
+  <div class="max-w-none prose">
+    <ul>
+      {{ range where .Site.RegularPages "File.Dir" $menu }}
+        {{ $text := .Title }}
+        {{ $url := .Permalink }}
+        {{ $external := 0 }}
+        {{ $lang := 0 }}
+        <li>
+          {{ partial "link" (dict "text" .Title "url" $url "external" $external "lang" $lang) . }}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}

@@ -1,0 +1,8 @@
+.table-of-contents ul ul {
+  @apply mt-1;
+  @apply ml-4;
+}
+
+.table-of-contents li:not(:first-child) {
+  @apply mt-1;
+}

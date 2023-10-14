@@ -1,0 +1,10 @@
+{{ $options := dict "inlineImports" true }}
+
+{{ $tables := resources.Get "styles/tables.css" }}
+{{ $tables = $tables | resources.PostCSS $options }}
+
+<!-- {{ if hugo.IsProduction }}
+  {{ $tables = $tables | minify | fingerprint | resources.PostProcess }}
+{{ end }} -->
+
+<link href="{{ $tables.Permalink }}" rel="stylesheet" />

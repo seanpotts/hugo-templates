@@ -1,0 +1,11 @@
+{{ partial "site-header.html" . }}
+
+  <div class="prose max-w-none prose-heading-mb">
+    {{ partial "navigation/breadcrumbs" . }}
+
+    {{ partial "heading.html" (dict "level" 1 "title" .Title) . }}
+
+    {{ .Content }}
+  </div>
+
+{{ partial "site-footer.html" . }}

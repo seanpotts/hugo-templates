@@ -1,0 +1,171 @@
+{{ $headingLevel := .headingLevel }}
+{{ $accordionMobile := .accordionMobile }}
+{{ $accordionPersist := .accordionPersist }}
+
+{{ with .data }}
+
+  <!--
+    If titleDisplay is used then set $title accordingly, followed by
+    sanitizing magic.
+  -->
+  {{ $title := .title }}
+  {{ if .titleDisplay }}
+    {{ $title = .titleDisplay }}
+  {{ end }}
+
+  <!--
+    "anchorize" doesn't strip out _italics_ and "markdownify" complicates
+    the matter, so convert to <em> with "markdownify" and strip.
+  -->
+  {{ $id := $title | plainify | lower | markdownify | anchorize }}
+  {{ $id = $id | replaceRE "<em>" "" | replaceRE "</em>" "" | replaceRE "/" "-" | replaceRE " " "-" | replaceRE "---" "-" | replaceRE "--" "-" | replaceRE "-+" "-" | replaceRE "," "" | replaceRE "-amp-" "-and-" }}
+
+  <!--
+    $heading is used by the .data range to get the proper index for mobile
+    table view. Used with: `index $heading $index "title"`.
+  -->
+  {{ $heading := .heading }}
+
+  {{ if or (eq $accordionMobile 1) (eq $accordionPersist 1) }}
+    <div class="mb-2">
+      <button
+        class="flex items-center justify-between w-full px-3 py-2 text-left transition duration-100 ease-linear border border-gray-300 border-solid bg-gray-100 js-accordionTrigger focus:outline-none focus:ring underline-trigger print:hidden
+          {{ if not (eq $accordionPersist 1) }}
+            md:hidden
+          {{ end }}
+        "
+        id="id-{{ lower $id }}"
+        data-id="{{ lower $id }}"
+        aria-expanded="false"
+        aria-controls="control-{{ lower $id }}"
+      >
+        <span class="underline-target">
+          {{ replace $title "\n" "<br />" | safeHTML | markdownify }}
+        </span>
+        <span class="sr-only">
+          Toggle the {{ if $title | markdownify }} {{ $title }} {{ else }} {{ lower .title | markdownify }} {{ end }}chart
+        </span>
+        <span class="pl-4">
+          <span class="flex items-center transition duration-200 transform icon">
+            {{ partial "icons/chevron" (dict "color" "text-inherit" "rotate" "rotate-90") . }}
+          </span>
+        </span>
+      </button>
+      <div
+        class="transition duration-200 opacity-0 accordion-target print:opacity-100
+          {{ if not (eq $accordionPersist 1) }}
+            md:opacity-100
+          {{ end }}
+        "
+      >
+        <div
+          id="control-{{ lower $id }}"
+          class="hidden pt-4 md:pt-0 print:block
+            {{ if not (eq $accordionPersist 1) }}
+              md:block
+            {{ end }}
+          "
+        >
+  {{ end }}
+
+          {{ if ge $headingLevel 1 }}
+            <h{{ $headingLevel }}>
+              <a
+                id="{{ lower $id }}"
+                href="#{{ lower $id }}"
+                class="inline-flex focus:outline-none js-hashSet group decoration-2"
+              >
+                <span class="transition duration-100 ease-linear group-focus:ring">
+                  <span>
+                    {{ $title | markdownify }}
+                  </span>
+                </span>
+              </a>
+            </h{{ $headingLevel }}>
+          {{ end }}
+
+          {{ if .description }}
+            <p>{{ .description | markdownify }}</p>
+          {{ end }}
+
+          <div class="js-tableFilter">
+            <table class="table-fixed">
+              <caption class="sr-only">
+                {{ if .caption }}
+                  {{ .caption | markdownify }}
+                {{ else }}
+                  Table for {{ lower .title | markdownify }}
+                {{ end }}
+              </caption>
+              {{ if .heading }}
+                <thead>
+                  <tr role="row">
+                    {{ range .heading }}
+                      {{ if .title }}
+                        <th
+                          role="columnheader"
+                          scope="col"
+                        >
+                          <span>
+                            {{ .title }}
+                          </span>
+                        </th>
+                      {{ end }}
+                    {{ end }}
+                  </tr>
+                </thead>
+              {{ end }}
+              {{ if .data }}
+                <tbody>
+                  {{ range .data }}
+                    {{ if .row }}
+                      <tr
+                        role="row"
+                        class="block md:table-row print:table-row"
+                      >
+                        {{ range $index, $row := .row }}
+                          <td
+                            role="cell"
+                            class="block md:table-cell print:table-cell"
+                          >
+                            <div class="grid grid-cols-2 gap-4 md:block print:block">
+                              <div
+                                class="md:hidden print:hidden"
+                                aria-hidden="true"
+                              >
+                                <strong>
+                                  {{ index $heading $index "title" }}
+                                </strong>
+                              </div>
+                              <span role="text">
+                                {{ if $row.link }}
+                                  <a href="{{ $row.link }}">
+                                {{ end }}
+                                  {{ $text := replace $row.text "\n" "<br />" | safeHTML | markdownify }}
+                                  {{ $text }} {{ if .spoken }}*{{ end }}
+                                {{ if $row.link }}
+                                  </a>
+                                {{ end }}
+                              </span>
+                            </div>
+                          </td>
+                        {{ end }}
+                      </tr>
+                    {{ end }}
+                  {{ end }}
+                </tbody>
+              {{ end }}
+            </table>
+          </div>
+
+          {{ if .extra }}
+            {{ replace .extra "\n" "<br />" | safeHTML | markdownify }}
+          {{ end }}
+
+  {{ if or (eq $accordionMobile 1) (eq $accordionPersist 1) }}
+        </div>
+      </div>
+    </div>
+  {{ end }}
+
+{{ end }}

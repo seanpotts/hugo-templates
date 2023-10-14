@@ -1,0 +1,7 @@
+{{ $canonicalLink := "" }}
+{{ if eq .Kind "404" }}
+  {{ $canonicalLink = printf "%s" "404/" | printf "%s%s" .Site.BaseURL }}
+{{ else }}
+  {{ $canonicalLink = .Permalink }}
+{{ end }}
+<link rel="canonical" href="{{ $canonicalLink }}">

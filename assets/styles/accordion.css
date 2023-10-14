@@ -1,0 +1,21 @@
+.accordion-target h2,
+.accordion-target h3,
+.accordion-target h4 {
+  @apply max-md:mt-0;
+}
+
+div[data-accordion-state="active"] .accordion-target {
+  @apply opacity-100;
+}
+
+div[data-accordion-state="active"] .accordion-target > div {
+  @apply block;
+}
+
+div[data-accordion-state="active"] .icon {
+  @apply rotate-180;
+}
+
+div[data-accordion-state="active"] button {
+  @apply font-bold;
+}

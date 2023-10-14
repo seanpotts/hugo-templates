@@ -1,0 +1,10 @@
+{{ $options := dict "inlineImports" true }}
+
+{{ $accordion := resources.Get "styles/accordion.css" }}
+{{ $accordion = $accordion | resources.PostCSS $options }}
+
+<!-- {{ if hugo.IsProduction }}
+  {{ $accordion = $accordion | minify | fingerprint | resources.PostProcess }}
+{{ end }} -->
+
+<link href="{{ $accordion.Permalink }}" rel="stylesheet" />

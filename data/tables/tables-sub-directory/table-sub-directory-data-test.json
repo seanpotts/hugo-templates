@@ -1,0 +1,47 @@
+{
+  "title": "Table sub directory data test",
+  "titleDisplay": "",
+  "description": "",
+  "extra": "",
+  "caption": "Table for the table sub directory data test content.",
+  "heading": [
+    {
+      "title": "Lorem"
+    },
+    {
+      "title": "Ipsum"
+    }
+  ],
+  "data": [
+    {
+      "row": [
+        {
+          "text": "Varius vel pharetra vel turpis nunc eget lorem dolor."
+        },
+        {
+          "text": "Nisi porta lorem."
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "text": "Lorem ipsum dolor sit amet."
+        },
+        {
+          "text": "Consectetur adipiscing elit."
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "text": "Ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        },
+        {
+          "text": "Excepteur sint occaecat cupidatat non proident."
+        }
+      ]
+    }
+  ]
+}
