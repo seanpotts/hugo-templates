@@ -1,0 +1,46 @@
+<div class="lg:sticky lg:top-4">
+
+<div class="lg:hidden">
+    <div class="flex justify-between items-center -mx-4 h-12">
+      <a href="{{ .Site.BaseURL }}" class="inline-block px-2 py-1 group focus:outline-none">
+        <span class="inline-block px-2 py-1 text-xl transition duration-100 ease-linear group-focus:ring">
+          {{ .Site.Title }}
+        </span>
+      </a>
+      <button
+        class="px-2 py-1 group focus:outline-none js-navigationMobileTrigger"
+        id="id-menu-toggle-mobile"
+        aria-expanded="false"
+        aria-controls="control-menu-toggle-mobile"
+      >
+        <span class="inline-flex items-center px-2 py-1 transition duration-100 ease-linear group-focus:ring">
+          <span class="mobile-menu-text-open">
+            Menu
+          </span>
+          <span class="hidden mobile-menu-text-close">
+            Close
+          </span>
+          <span class="flex justify-center items-center pl-1">
+            <span class="flex items-center">
+              {{ partial "icons/menu" . }}
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="opacity-0 transition-opacity duration-500 lg:opacity-100 lg:block lg:flex-none js-navigationMobileTarget"
+    id="control-menu-toggle-mobile"
+    aria-labelledby="id-menu-toggle-mobile"
+    role="region"
+  >
+    <div class="hidden relative flex-1 pt-4 lg:block lg:flex-none lg:pt-0">
+      {{ partial "navigation/navigation-menu.html" (dict "site" $.Site "menu" "main" "title" "Home") . }}
+      {{ partial "navigation/navigation-menu.html" (dict "site" $.Site "menu" "layouts" "title" "Layouts") . }}
+      {{ partial "navigation/navigation-menu.html" (dict "site" $.Site "menu" "shortcodes" "title" "Shortcodes") . }}
+    </div>
+  </div>
+
+</div>

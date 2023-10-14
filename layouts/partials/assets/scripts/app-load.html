@@ -1,0 +1,7 @@
+{{ $appLoad := resources.Get "scripts/app-load.js" }}
+
+<!-- {{ if hugo.IsProduction }}
+  {{ $appLoad = $appLoad | minify | fingerprint }}
+{{ end }} -->
+
+<script src="{{ $appLoad.Permalink }}" type="text/javascript"></script>

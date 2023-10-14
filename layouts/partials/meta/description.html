@@ -1,0 +1,6 @@
+{{ $description := "" }}
+{{ if .Params.description }}
+  <meta name="description" content="{{ .Params.description }}">
+{{ else if eq .Kind "404" }}
+  <meta name="description" content="The page could not be found.">
+{{ end }}

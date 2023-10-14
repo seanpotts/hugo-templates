@@ -1,0 +1,30 @@
+{{ $text := .text }}
+{{ $url := .url }}
+{{ $external := .external }}
+{{ $lang := .lang }}
+
+<!-- Catch any options for true or defaults -->
+{{ $languageCode := "fi" }}
+{{ if or (ne $lang 1) (ne $lang true) (ne $lang "true") (ne $lang "fi") }}
+  {{ $languageCode = $lang }}
+{{ end }}
+
+<a
+  href="{{ $url }}"
+  class="inline-block transition duration-100 ease-linear focus:outline-none focus:ring hover:text-indigo-600 focus:text-indigo-600"
+  {{ if $external }}target="_blank"{{ end }}
+>
+  {{- if $external -}}
+    <span {{ if $languageCode }}lang="{{ $languageCode }}"{{ end }}>
+  {{- end -}}
+    {{ $text }}
+  {{- if $external -}}
+    </span>
+    <span class="pr-0.5 pl-2">
+      {{ partial "icons/external" . }}
+    </span>
+    <span class="sr-only">
+      (Opens in new window)
+    </span>
+  {{- end -}}
+</a>

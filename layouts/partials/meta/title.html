@@ -1,0 +1,10 @@
+{{ $siteTitle := .Site.Title }}
+{{ $siteTitlePath := print "/ " .Site.Title }}
+
+{{ $title := printf "%s" $siteTitlePath | printf "%s%s" " " | printf "%s%s" .Title }}
+
+{{ if .IsHome }}
+  {{ $title = print $siteTitle " / Home" }}
+{{ end }}
+
+<title>{{ $title }}</title>
